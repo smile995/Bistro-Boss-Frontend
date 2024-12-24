@@ -3,13 +3,13 @@
 const ItemViewer = ({ manu }) => {
   const { name, image, recipe, price } = manu;
   return (
-    <div className="flex  gap-5">
-      <img style={{borderRadius:"0px 200px 200px 200px"}} className="w-[110px]" src={image} alt="" />
+     <div className="flex  md:gap-8 gap-3">
+      <img style={{borderRadius:"0px 200px 200px 200px"}} className="md:w-[100px] w-[75px]" src={image} alt="" />
       <div>
-        <p>{name}</p>
-        <p>{recipe}</p>
+        <p className="md:text-2xl uppercase text-[#141414] ">{name} ------</p>
+        <p className="text-[#b5b5b5] ">{recipe}</p>
       </div>
-      <p className="text-[#D99904] text-xl font-semibold">${price}</p>
+      <p className="text-[#D99904] text-xl ">${price}</p>
     </div>
   );
 };
