@@ -1,8 +1,11 @@
-
+import PopularItem from "./Components/PopularItem";
+import Slider from "./Components/Slider";
 
 export const HomePage = () => {
-  
   return (
-    <div>HomePage</div>
-  )
-}
+    <div>
+      <Slider></Slider>
+      <PopularItem></PopularItem>
+    </div>
+  );
+};
