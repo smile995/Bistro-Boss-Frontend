@@ -1,32 +1,62 @@
 [
     {
-        "_id": "643010e0f5a7e52ce1e8fa65",
-        "name": "Jane Doe",
-        "details": "Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like). It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.",
+        "_id": "64301234f5a7e52ce1e8fa70",
+        "name": "Alice Brown",
+        "details": "The product is decent but lacks some key features that I was looking for. It's good for basic use but not for advanced users.",
         "rating": 3
     },
     {
-        "_id": "643010f9f5a7e52ce1e8fa66",
-        "name": "John Doe",
-        "details": "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like)",
-        "rating": 2
-    },
-    {
-        "_id": "6430110af5a7e52ce1e8fa67",
-        "name": "MJ Doe",
-        "details": "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like)",
+        "_id": "64301245f5a7e52ce1e8fa71",
+        "name": "Chris Green",
+        "details": "Excellent service! The team was very responsive, and the product exceeded my expectations. Will definitely recommend it.",
         "rating": 5
     },
     {
-        "_id": "64301123f5a7e52ce1e8fa68",
-        "name": "Sarah Smith",
-        "details": "I found the product to be incredibly useful and easy to use. The interface is intuitive, and it has all the features I need. Highly recommend it!",
+        "_id": "64301256f5a7e52ce1e8fa72",
+        "name": "Emily Davis",
+        "details": "The product is okay, but I faced some issues with the installation process. Customer support was helpful, though.",
+        "rating": 3
+    },
+    {
+        "_id": "64301267f5a7e52ce1e8fa73",
+        "name": "Michael Scott",
+        "details": "I loved the product! It works perfectly and has all the features I need. The team behind it is also very supportive.",
+        "rating": 5
+    },
+    {
+        "_id": "64301278f5a7e52ce1e8fa74",
+        "name": "Linda Taylor",
+        "details": "Not satisfied with the product. It did not meet my expectations, and the quality was subpar. Would not recommend it.",
+        "rating": 1
+    },
+    {
+        "_id": "64301289f5a7e52ce1e8fa75",
+        "name": "David Wilson",
+        "details": "The product is good but a bit overpriced. If the price was lower, I would consider it a better value for money.",
         "rating": 4
     },
     {
-        "_id": "6430113af5a7e52ce1e8fa69",
-        "name": "Robert Johnson",
-        "details": "This is by far the best service I have ever used. The customer support is outstanding, and the product itself is top-notch. I couldn't be happier!",
+        "_id": "6430129af5a7e52ce1e8fa76",
+        "name": "Sophia Martinez",
+        "details": "Amazing product! The design is sleek, and it works like a charm. Highly recommend it to anyone in need of such a solution.",
+        "rating": 5
+    },
+    {
+        "_id": "643012abf5a7e52ce1e8fa77",
+        "name": "James Brown",
+        "details": "The product is decent but has some bugs that need fixing. Once those are addressed, it could be great.",
+        "rating": 3
+    },
+    {
+        "_id": "643012bcf5a7e52ce1e8fa78",
+        "name": "Olivia Harris",
+        "details": "I found the product to be very useful. It has all the features I need and is easy to use. Great value for money.",
+        "rating": 4
+    },
+    {
+        "_id": "643012cdf5a7e52ce1e8fa79",
+        "name": "Ethan Moore",
+        "details": "The product is excellent! It exceeded my expectations in every way. The customer service team was also very helpful.",
         "rating": 5
     }
 ]
