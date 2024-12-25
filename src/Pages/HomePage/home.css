@@ -1,0 +1,15 @@
+.bgImg{
+    background-image: url('../../assets/home/chef-service.jpg');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    border-radius: 10px;
+}
+
+.featuredImg{
+    background-image: url('../../assets/home/featured.jpg');
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    border-radius: 10px;
+}

@@ -15,7 +15,7 @@ const PopularItem = () => {
   return (
     <div className="space-y-5 mb-4">
       <SectionTitle subheading="Check it out" heading="from our manu" />
-      <div className=" grid md:grid-cols-2 gap-5">
+      <div className=" grid md:grid-cols-2 gap-5 p-3">
         {manus.map((manu) => (
           <ItemViewer key={manu._id} manu={manu} />
         ))}
