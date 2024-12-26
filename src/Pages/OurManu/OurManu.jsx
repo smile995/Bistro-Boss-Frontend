@@ -1,8 +1,11 @@
+import ItemCover from "../../SharedComponents/ItemCover/ItemCover"
 
 
 const OurManu = () => {
   return (
-    <div>OurManu</div>
+    <div>
+      <ItemCover></ItemCover>
+    </div>
   )
 }
 

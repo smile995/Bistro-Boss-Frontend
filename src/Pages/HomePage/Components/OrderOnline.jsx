@@ -29,28 +29,28 @@ const OrderOnline = () => {
           className="mySwiper"
         >
           <SwiperSlide>
-            <img src={img1} alt="" />
+            <img className="rounded" src={img1} alt="" />
             <p className="uppercase md:-mt-16 -mt-6 text-center text-white md:text-2xl font-bold">salads</p>
           </SwiperSlide>
           <SwiperSlide>
-            <img src={img2} alt="" />
+            <img className="rounded" src={img2} alt="" />
             <p className="uppercase md:-mt-16 -mt-6 text-center text-white md:text-2xl font-bold">pizzas</p>
           </SwiperSlide>
           <SwiperSlide>
-            <img src={img3} alt="" />
+            <img className="rounded" src={img3} alt="" />
             <p className="uppercase md:-mt-16 -mt-6 text-center text-white md:text-2xl font-bold">soups</p>
           </SwiperSlide>
           <SwiperSlide>
-            <img src={img4} alt="" />
+            <img className="rounded" src={img4} alt="" />
             <p className="uppercase md:-mt-16 -mt-6 text-center text-white md:text-2xl font-bold">cake</p>
           </SwiperSlide>
           <SwiperSlide>
-            <img src={img5} alt="" />
+            <img className="rounded" src={img5} alt="" />
             <p className="uppercase md:-mt-16 -mt-6 text-center text-white md:text-2xl font-bold">salads</p>
           </SwiperSlide>
         
           <SwiperSlide>
-            <img src={img2} alt="" />
+            <img className="rounded" src={img2} alt="" />
             <p className="uppercase md:-mt-16 -mt-6 text-center text-white md:text-2xl font-bold">pizzas</p>
           </SwiperSlide>
          
