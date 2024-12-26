@@ -1,10 +1,10 @@
 import ItemCover from "../../SharedComponents/ItemCover/ItemCover"
-
+import banner from '../../assets/menu/banner3.jpg'
 
 const OurManu = () => {
   return (
     <div>
-      <ItemCover></ItemCover>
+      <ItemCover title={"Our Manu"} descrition={"Would you like to try a dish?"} img={banner}></ItemCover>
     </div>
   )
 }
