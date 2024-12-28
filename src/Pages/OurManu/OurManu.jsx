@@ -4,7 +4,7 @@ import banner from '../../assets/menu/banner3.jpg'
 const OurManu = () => {
   return (
     <div>
-      <ItemCover title={"Our Manu"} descrition={"Would you like to try a dish?"} img={banner}></ItemCover>
+      <ItemCover title={"Our Manu"} tag={"Would you like to try a dish?"} img={banner}></ItemCover>
     </div>
   )
 }
