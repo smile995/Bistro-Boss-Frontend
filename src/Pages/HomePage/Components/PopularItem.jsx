@@ -1,19 +1,9 @@
-import { useEffect, useState } from "react";
 import SectionTitle from "../../../SharedComponents/SectionTitle/SectionTitle";
 import ItemViewer from "../../../SharedComponents/ItemViewer/ItemViewer";
 import useManu from "../../../Hooks/useManu";
 import { Link } from "react-router-dom";
 
 const PopularItem = () => {
-  // const [manus, setManus] = useState([]);
-  // useEffect(() => {
-  //   fetch("manu.json")
-  //     .then((res) => res.json())
-  //     .then((data) => {
-  //       const popularData = data?.filter((item) => item.category === "popular");
-  //       setManus(popularData);
-  //     });
-  // }, []);
   const [manus]= useManu();
   const popularData = manus?.filter((item) => item.category === "popular");
   return (
