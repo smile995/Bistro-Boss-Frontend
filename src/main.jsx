@@ -17,9 +17,9 @@ createRoot(document.getElementById("root")).render(
         <Route path="/" element={<Layout />}>
           {/* Nested Route under the parants layout*/}
           <Route index element={<HomePage />} />
-          <Route path="our-manu" element={<OurManu/>} />
-          <Route path="our-food" element={<Order/>} />
-          <Route path="contact" element={<Contact/>} />
+          <Route path="/our-manu" element={<OurManu/>} />
+          <Route path="/our-food" element={<Order/>} />
+          <Route path="/contact" element={<Contact/>} />
         </Route>
         <Route path="*" element={<ErrorPage />} />
       </Routes>

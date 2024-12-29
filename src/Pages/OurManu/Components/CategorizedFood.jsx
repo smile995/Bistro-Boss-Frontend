@@ -13,7 +13,7 @@ const CategorizedFood = ({items}) => {
         ))}
       </div>
       <div className="flex justify-center mt-2">
-        <Link to={'our-manu'}>
+        <Link to={'/our-food'}>
         <button className="px-5  py-3 font-semibold border-b-black  border-b-4 rounded-lg hover:text-[#BB8506] shadow-xl ">
         ORDER YOUR FAVOURITE FOOD
         </button></Link>

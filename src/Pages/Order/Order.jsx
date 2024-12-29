@@ -3,6 +3,7 @@ import ItemCover from "../../SharedComponents/ItemCover/ItemCover";
 import cover from "../../assets/shop/banner2.jpg";
 import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
 import "react-tabs/style/react-tabs.css";
+import CategoryFood from "./Components/CategoryFood";
 const Order = () => {
   const [manus] = useManu();
   const pizzas = manus?.filter((item) => item.category === "pizza");
@@ -23,7 +24,7 @@ const Order = () => {
       <div className="my-10">
         <Tabs>
           <TabList>
-            <Tab>Slads</Tab>
+            <Tab>Salads</Tab>
             <Tab>Desserts</Tab>
             <Tab>Soups</Tab>
             <Tab>Pizzas</Tab>
@@ -31,11 +32,21 @@ const Order = () => {
           </TabList>
 
           <TabPanel>
-            <h2>Any content 1</h2>
+           <CategoryFood categoty={salads} />
           </TabPanel>
           <TabPanel>
-            <h2>Any content 2</h2>
+           <CategoryFood categoty={desserts} />
           </TabPanel>
+          <TabPanel>
+           <CategoryFood categoty={soups} />
+          </TabPanel>
+          <TabPanel>
+           <CategoryFood categoty={pizzas} />
+          </TabPanel>
+          <TabPanel>
+           <CategoryFood categoty={drinks} />
+          </TabPanel>
+          
         </Tabs>
       </div>
     </div>
