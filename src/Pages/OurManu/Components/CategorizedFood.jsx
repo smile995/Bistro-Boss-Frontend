@@ -4,6 +4,8 @@ import { Link } from "react-router-dom"
 import ItemViewer from "../../../SharedComponents/ItemViewer/ItemViewer"
 
 const CategorizedFood = ({items}) => {
+  console.log(items);
+  
   return (
     <div className="mb-10">
         
