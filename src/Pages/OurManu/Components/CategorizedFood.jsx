@@ -3,9 +3,7 @@
 import { Link } from "react-router-dom"
 import ItemViewer from "../../../SharedComponents/ItemViewer/ItemViewer"
 
-const CategorizedFood = ({items}) => {
-  console.log(items);
-  
+const CategorizedFood = ({items}) => { 
   return (
     <div className="mb-10">
         

@@ -1,13 +1,17 @@
 import Navbar from "../SharedComponents/Navbar";
 import Footer from "../SharedComponents/Footer/Footer";
-import { Outlet } from "react-router-dom";
+import { Outlet, useLocation } from "react-router-dom";
 
 const Layout = () => {
+  const location = useLocation();
+  const pathname =
+    location.pathname == "/signin" || location.pathname == "/signout";
+
   return (
     <div className="max-w-screen-xl mx-auto ">
-      <Navbar />
+      {pathname ? "" : <Navbar />}
       <Outlet />
-      <Footer />
+      {pathname ? "" : <Footer />}
     </div>
   );
 };

@@ -15,6 +15,12 @@ const Navbar = () => {
       <li>
         <NavLink to={'/contact'}>Contact</NavLink>
       </li>
+      <li>
+        <NavLink to={'/signin'}>SignIn</NavLink>
+      </li>
+      <li>
+        <NavLink to={'/signout'}>SignOut</NavLink>
+      </li>
      
 
     
