@@ -95,7 +95,7 @@ const Contact = () => {
             <label className="label">
               <span className="label-text">Message*</span>
             </label>
-            <textarea className="w-full input input-bordered"></textarea>
+            <textarea className="w-full input input-bordered min-h-36"></textarea>
           </div>
           <div>
             React capcha will be come here
