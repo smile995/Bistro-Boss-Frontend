@@ -10,7 +10,7 @@ import OurManu from "./Pages/OurManu/OurManu.jsx";
 import Order from "./Pages/Order/Order.jsx";
 import Contact from "./Pages/Contact/Contact.jsx";
 import SignIn from "./Pages/Signin/SignIn.jsx";
-import SignOut from "./Pages/SignOut/SignOut.jsx";
+import SignUp from "./Pages/SignOut/SignUpt.jsx";
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
@@ -23,7 +23,7 @@ createRoot(document.getElementById("root")).render(
           <Route path="/our-food" element={<Order/>} />
           <Route path="/contact" element={<Contact/>} />
           <Route path="/signin" element={<SignIn/>} />
-          <Route path="/signout" element={<SignOut/>} />
+          <Route path="/signup" element={<SignUp/>} />
         </Route>
         <Route path="*" element={<ErrorPage />} />
       </Routes>

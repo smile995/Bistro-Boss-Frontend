@@ -19,7 +19,7 @@ const Navbar = () => {
         <NavLink to={'/signin'}>SignIn</NavLink>
       </li>
       <li>
-        <NavLink to={'/signout'}>SignOut</NavLink>
+        <NavLink to={'/signup'}>SignOut</NavLink>
       </li>
      
 
