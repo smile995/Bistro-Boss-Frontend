@@ -1,8 +1,15 @@
 import { Link, NavLink } from "react-router-dom";
 import "./shared.css";
 import useBistro from "../Hooks/useBistro";
+import { ToastContainer, toast } from "react-toastify";
 const Navbar = () => {
-  const { user } = useBistro();
+  const { user, userSignOut } = useBistro();
+  const notify = () => toast("You are logged out");
+  const handleLogOut = () => {
+    userSignOut().then(() => {
+      notify();
+    });
+  };
   const navLink = (
     <>
       <li>
@@ -17,7 +24,6 @@ const Navbar = () => {
       <li>
         <NavLink to={"/contact"}>CONTACT</NavLink>
       </li>
-
     </>
   );
   return (
@@ -60,12 +66,18 @@ const Navbar = () => {
       </div>
       <div className="navbar-end">
         {user ? (
-          <button className="btn bg-[#DC3545]  text-white border-0 hover:bg-[#C82333] ">SIGN OUT</button>
+          <button
+            onClick={handleLogOut}
+            className="btn bg-[#DC3545]  text-white border-0 hover:bg-[#C82333] "
+          >
+            SIGN OUT
+          </button>
         ) : (
           <button className="btn bg-[#007BFF] hover:bg-[#0056b3] text-white border-0">
             <Link to={"/signin"}>SIGN IN</Link>
           </button>
         )}
+        <ToastContainer />
       </div>
     </div>
   );

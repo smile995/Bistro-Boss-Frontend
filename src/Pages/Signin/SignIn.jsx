@@ -4,19 +4,21 @@ import image from "../../assets/others/authentication2.png";
 import { FaEye, FaEyeSlash } from "react-icons/fa6";
 import { useEffect, useRef, useState } from "react";
 import useBistro from "../../Hooks/useBistro";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import SocialLogin from "../../SharedComponents/SocialLogin/SocialLogin";
+import { ToastContainer, toast } from 'react-toastify';
 import {
   loadCaptchaEnginge,
   LoadCanvasTemplate,
-  LoadCanvasTemplateNoReload,
   validateCaptcha,
 } from "react-simple-captcha";
 const SignIn = () => {
-  const { user, loading } = useBistro();
+  const navigate= useNavigate();
+  const { user, loading,userSignIn } = useBistro();
   const [disable, setDisable] = useState(true);
   const [seen, setSeen] = useState(false);
   const [eye, setEye] = useState(false);
+  const notify = () => toast("You are logged in successfully");
   const CaptchaRef = useRef();
   const handleSeenPassword = () => {
     setSeen(!seen);
@@ -30,7 +32,18 @@ const SignIn = () => {
     const form = e.target;
     const email = form.email.value;
     const password = form.password.value;
-    console.log(email, password);
+    userSignIn(email,password)
+    .then(result=>{
+      const currentUser= result.user
+      if(currentUser.email){
+        notify();
+        navigate("/")
+        form.reset();
+      }
+    })
+    .catch(error=>{
+      alert("Something went wrong")
+    })
   };
 
   const validedCaptchaValue = () => {
@@ -90,6 +103,7 @@ const SignIn = () => {
               >
                 {eye ? <FaEyeSlash /> : <FaEye />}
               </button>
+              <ToastContainer />
             </div>
           </div>
           <div className="mt-5">

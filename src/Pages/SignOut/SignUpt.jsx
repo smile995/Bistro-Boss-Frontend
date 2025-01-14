@@ -2,11 +2,12 @@ import { useState } from "react";
 import woodBg from "../../assets/reservation/wood-grain-pattern-gray1x.png";
 import image from "../../assets/others/authentication2.png";
 import { FaEye, FaEyeSlash } from "react-icons/fa6";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import useBistro from "../../Hooks/useBistro";
-import { ToastContainer, toast } from 'react-toastify';
+import { ToastContainer, toast } from "react-toastify";
 const SignUp = () => {
-  const notify = () => toast("Login Successfull");
+  const navigate=useNavigate();
+  const notify = () => toast("Sign Up Successfull");
   const { createUser } = useBistro();
 
   const [seen, setSeen] = useState(false);
@@ -22,12 +23,17 @@ const SignUp = () => {
     const email = form.email.value;
     const password = form.password.value;
     createUser(email, password)
-    .then((result) => {
-      const currentUser = result.user;
-      console.log(currentUser);
-      notify()
-      
-    });
+      .then((result) => {
+        const currentUser = result.user;
+        if (currentUser.email) {
+          notify();
+          navigate("/")
+          form.reset()
+        }
+      })
+      .catch((error) => {
+        alert("Something went wrong", error.message);
+      });
   };
   return (
     <div
