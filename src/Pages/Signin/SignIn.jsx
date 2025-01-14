@@ -4,15 +4,17 @@ import image from "../../assets/others/authentication2.png";
 import { FaEye, FaEyeSlash } from "react-icons/fa6";
 import { useState } from "react";
 import useBistro from "../../Hooks/useBistro";
+import { Link } from "react-router-dom";
+import SocialLogin from "../../SharedComponents/SocialLogin/SocialLogin";
 const SignIn = () => {
-  const {user,loading}=useBistro()
+  const { user, loading } = useBistro();
   console.log(loading);
-  
+
   const [seen, setSeen] = useState(false);
   const [eye, setEye] = useState(false);
   const handleSeenPassword = () => {
     setSeen(!seen);
-    setEye(!eye)
+    setEye(!eye);
   };
   const handleLogin = (e) => {
     e.preventDefault();
@@ -95,13 +97,28 @@ const SignIn = () => {
             </div>
           </div>
 
-          <div className="mt-6">
+          <div className="mt-5">
             <input
               className="px-5 py-3 w-full rounded text-white font-semibold bg-[#dbb884]"
               type="submit"
               value="Login"
             />
           </div>
+          <div className="my-6 text-center">
+            <h2 className="text-[#dbb884] text-xl">
+              New here?{" "}
+              <Link
+                className="font-semibold hover:text-[#0056b3] "
+                to={"/signup"}
+              >
+                Create a New Account
+              </Link>{" "}
+            </h2>
+          </div>
+          <div>
+            <SocialLogin/>
+          </div>
+         
         </form>
       </div>
     </div>

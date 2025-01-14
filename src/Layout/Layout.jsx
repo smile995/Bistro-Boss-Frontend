@@ -5,7 +5,7 @@ import { Outlet, useLocation } from "react-router-dom";
 const Layout = () => {
   const location = useLocation();
   const pathname =
-    location.pathname == "/signin" || location.pathname == "/signout";
+    location.pathname == "/signin" || location.pathname == "/signup";
 
   return (
     <div className="max-w-screen-xl mx-auto ">

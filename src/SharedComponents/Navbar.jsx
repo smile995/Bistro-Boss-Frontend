@@ -1,29 +1,23 @@
-import {  Link, NavLink } from "react-router-dom";
-import './shared.css'
+import { Link, NavLink } from "react-router-dom";
+import "./shared.css";
+import useBistro from "../Hooks/useBistro";
 const Navbar = () => {
+  const { user } = useBistro();
   const navLink = (
     <>
       <li>
-        <NavLink to={'/'}>Home</NavLink>
+        <NavLink to={"/"}>HOME</NavLink>
       </li>
       <li>
-        <NavLink to={'/our-manu'}>Our Manu</NavLink>
+        <NavLink to={"/our-manu"}>OUR MANU</NavLink>
       </li>
       <li>
-        <NavLink to={'/our-food'}>Our Food</NavLink>
+        <NavLink to={"/our-food"}>OUR FOOD</NavLink>
       </li>
       <li>
-        <NavLink to={'/contact'}>Contact</NavLink>
+        <NavLink to={"/contact"}>CONTACT</NavLink>
       </li>
-      <li>
-        <NavLink to={'/signin'}>SignIn</NavLink>
-      </li>
-      <li>
-        <NavLink to={'/signup'}>SignOut</NavLink>
-      </li>
-     
 
-    
     </>
   );
   return (
@@ -53,18 +47,25 @@ const Navbar = () => {
             {navLink}
           </ul>
         </div>
-        <Link to={'/'}>
-        <div>
-          <p className="md:text-2xl text-white uppercase font-bold">Bistro Boss</p>
-        </div>
+        <Link to={"/"}>
+          <div>
+            <p className="md:text-2xl text-white uppercase font-bold">
+              Bistro Boss
+            </p>
+          </div>
         </Link>
-    
       </div>
       <div className="navbar-center hidden lg:flex">
         <ul className="menu menu-horizontal px-1">{navLink}</ul>
       </div>
       <div className="navbar-end">
-        <a className="btn">Button</a>
+        {user ? (
+          <button className="btn bg-[#DC3545]  text-white border-0 hover:bg-[#C82333] ">SIGN OUT</button>
+        ) : (
+          <button className="btn bg-[#007BFF] hover:bg-[#0056b3] text-white border-0">
+            <Link to={"/signin"}>SIGN IN</Link>
+          </button>
+        )}
       </div>
     </div>
   );
