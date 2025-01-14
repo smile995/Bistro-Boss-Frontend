@@ -5,9 +5,14 @@ import { FaEye, FaEyeSlash } from "react-icons/fa6";
 import { Link, useNavigate } from "react-router-dom";
 import useBistro from "../../Hooks/useBistro";
 import { ToastContainer, toast } from "react-toastify";
+import { updateProfile } from "firebase/auth";
+import { auth } from "../../Firebase/Firebase.config";
+import SocialLogin from "../../SharedComponents/SocialLogin/SocialLogin";
 const SignUp = () => {
-  const navigate=useNavigate();
+  const navigate = useNavigate();
   const notify = () => toast("Sign Up Successfull");
+  const update = () => toast("Profile updated successfully");
+  const error = () => toast("Something went wrong");
   const { createUser } = useBistro();
 
   const [seen, setSeen] = useState(false);
@@ -25,14 +30,19 @@ const SignUp = () => {
     createUser(email, password)
       .then((result) => {
         const currentUser = result.user;
-        if (currentUser.email) {
+        console.log(currentUser);
+
+        if (currentUser?.email) {
           notify();
-          navigate("/")
-          form.reset()
+          navigate("/");
+          form.reset();
+          updateProfile(auth.currentUser, { displayName: name }).then(() => {
+            update();
+          });
         }
       })
-      .catch((error) => {
-        alert("Something went wrong", error.message);
+      .catch(() => {
+        error();
       });
   };
   return (
@@ -119,6 +129,9 @@ const SignUp = () => {
                 Go to the Login
               </Link>{" "}
             </h2>
+          </div>
+          <div>
+            <SocialLogin />
           </div>
         </form>
       </div>

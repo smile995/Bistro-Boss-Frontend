@@ -35,10 +35,10 @@ const SignIn = () => {
     userSignIn(email,password)
     .then(result=>{
       const currentUser= result.user
-      if(currentUser.email){
+      if(currentUser){
         notify();
         navigate("/")
-        form.reset();
+        form.reset()
       }
     })
     .catch(error=>{
