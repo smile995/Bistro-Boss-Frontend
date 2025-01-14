@@ -2,27 +2,44 @@
 import woodBg from "../../assets/reservation/wood-grain-pattern-gray1x.png";
 import image from "../../assets/others/authentication2.png";
 import { FaEye, FaEyeSlash } from "react-icons/fa6";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import useBistro from "../../Hooks/useBistro";
 import { Link } from "react-router-dom";
 import SocialLogin from "../../SharedComponents/SocialLogin/SocialLogin";
+import {
+  loadCaptchaEnginge,
+  LoadCanvasTemplate,
+  LoadCanvasTemplateNoReload,
+  validateCaptcha,
+} from "react-simple-captcha";
 const SignIn = () => {
   const { user, loading } = useBistro();
-  console.log(loading);
-
+  const [disable, setDisable] = useState(true);
   const [seen, setSeen] = useState(false);
   const [eye, setEye] = useState(false);
+  const CaptchaRef = useRef();
   const handleSeenPassword = () => {
     setSeen(!seen);
     setEye(!eye);
   };
+  useEffect(() => {
+    loadCaptchaEnginge(6);
+  }, []);
   const handleLogin = (e) => {
     e.preventDefault();
     const form = e.target;
     const email = form.email.value;
     const password = form.password.value;
-    const captcha = form.captcha.value;
-    console.log(email, password, captcha);
+    console.log(email, password);
+  };
+
+  const validedCaptchaValue = () => {
+    const Captcha_value = CaptchaRef.current.value;
+    if (validateCaptcha(Captcha_value)) {
+      setDisable(false);
+    } else {
+      setDisable(true);
+    }
   };
   return (
     <div
@@ -75,8 +92,8 @@ const SignIn = () => {
               </button>
             </div>
           </div>
-          <div>
-            <h1>react capche will comes here</h1>
+          <div className="mt-5">
+            <LoadCanvasTemplate reloadText="Reload My Captcha" />
           </div>
 
           <div className="flex justify-between items-end  gap-2">
@@ -86,20 +103,27 @@ const SignIn = () => {
               </label>
               <input
                 type="text"
-                placeholder="Type the Captcha here"
+                placeholder="Type the Captcha above"
                 name="captcha"
+                ref={CaptchaRef}
                 className="input input-bordered"
                 required
               />
             </div>
             <div>
-              <button className="btn btn-secondary">Valided</button>
+              <button
+                onClick={validedCaptchaValue}
+                className="btn btn-secondary"
+              >
+                Valided
+              </button>
             </div>
           </div>
 
           <div className="mt-5">
             <input
-              className="px-5 py-3 w-full rounded text-white font-semibold bg-[#dbb884]"
+              disabled={disable}
+              className="px-5 btn py-3 w-full rounded text-white font-semibold bg-[#dbb884]"
               type="submit"
               value="Login"
             />
@@ -108,7 +132,7 @@ const SignIn = () => {
             <h2 className="text-[#dbb884] text-xl">
               New here?{" "}
               <Link
-                className="font-semibold hover:text-[#0056b3] "
+                className="font-semibold hover:underline hover:text-[#0056b3] "
                 to={"/signup"}
               >
                 Create a New Account
@@ -116,9 +140,8 @@ const SignIn = () => {
             </h2>
           </div>
           <div>
-            <SocialLogin/>
+            <SocialLogin />
           </div>
-         
         </form>
       </div>
     </div>
