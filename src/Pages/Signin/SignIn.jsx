@@ -93,7 +93,7 @@ const SignIn = () => {
             </div>
           </div>
           <div className="mt-5">
-            <LoadCanvasTemplate reloadText="Reload My Captcha" />
+            <LoadCanvasTemplate />
           </div>
 
           <div className="flex justify-between items-end  gap-2">

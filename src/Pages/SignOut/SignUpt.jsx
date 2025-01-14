@@ -3,7 +3,12 @@ import woodBg from "../../assets/reservation/wood-grain-pattern-gray1x.png";
 import image from "../../assets/others/authentication2.png";
 import { FaEye, FaEyeSlash } from "react-icons/fa6";
 import { Link } from "react-router-dom";
+import useBistro from "../../Hooks/useBistro";
+import { ToastContainer, toast } from 'react-toastify';
 const SignUp = () => {
+  const notify = () => toast("Login Successfull");
+  const { createUser } = useBistro();
+
   const [seen, setSeen] = useState(false);
   const [eye, setEye] = useState(false);
   const handleSeenPassword = () => {
@@ -16,8 +21,13 @@ const SignUp = () => {
     const name = form.name.value;
     const email = form.email.value;
     const password = form.password.value;
-    
-    console.log(email, password,name);
+    createUser(email, password)
+    .then((result) => {
+      const currentUser = result.user;
+      console.log(currentUser);
+      notify()
+      
+    });
   };
   return (
     <div
@@ -82,6 +92,7 @@ const SignUp = () => {
               >
                 {eye ? <FaEyeSlash /> : <FaEye />}
               </button>
+              <ToastContainer />
             </div>
           </div>
 
