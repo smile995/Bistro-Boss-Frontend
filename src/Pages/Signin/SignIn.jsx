@@ -1,8 +1,13 @@
+/* eslint-disable no-unused-vars */
 import woodBg from "../../assets/reservation/wood-grain-pattern-gray1x.png";
 import image from "../../assets/others/authentication2.png";
 import { FaEye, FaEyeSlash } from "react-icons/fa6";
 import { useState } from "react";
+import useBistro from "../../Hooks/useBistro";
 const SignIn = () => {
+  const {user,loading}=useBistro()
+  console.log(loading);
+  
   const [seen, setSeen] = useState(false);
   const [eye, setEye] = useState(false);
   const handleSeenPassword = () => {
