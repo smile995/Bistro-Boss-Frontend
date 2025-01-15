@@ -4,7 +4,7 @@ import image from "../../assets/others/authentication2.png";
 import { FaEye, FaEyeSlash } from "react-icons/fa6";
 import { useEffect, useRef, useState } from "react";
 import useBistro from "../../Hooks/useBistro";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import SocialLogin from "../../SharedComponents/SocialLogin/SocialLogin";
 import { ToastContainer, toast } from 'react-toastify';
 import {
@@ -14,6 +14,10 @@ import {
 } from "react-simple-captcha";
 const SignIn = () => {
   const navigate= useNavigate();
+  const location=useLocation();
+  const goBack= location?.pathname || "/";
+  console.log(goBack);
+  
   const { user, loading,userSignIn } = useBistro();
   const [disable, setDisable] = useState(true);
   const [seen, setSeen] = useState(false);
@@ -37,7 +41,7 @@ const SignIn = () => {
       const currentUser= result.user
       if(currentUser){
         notify();
-        navigate("/")
+        navigate(goBack)
         form.reset()
       }
     })
