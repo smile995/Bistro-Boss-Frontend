@@ -2,6 +2,7 @@ import { Link, NavLink } from "react-router-dom";
 import "./shared.css";
 import useBistro from "../Hooks/useBistro";
 import { ToastContainer, toast } from "react-toastify";
+import { FaCartShopping } from "react-icons/fa6";
 const Navbar = () => {
   const { user, userSignOut } = useBistro();
   const notify = () => toast("You are logged out");
@@ -65,6 +66,10 @@ const Navbar = () => {
         <ul className="menu menu-horizontal px-1">{navLink}</ul>
       </div>
       <div className="navbar-end">
+        <button className="btn mr-2">
+          <FaCartShopping className="text-2xl" />
+          <div className="badge badge-secondary hidden sm:block">+0</div>
+        </button>
         {user ? (
           <button
             onClick={handleLogOut}
