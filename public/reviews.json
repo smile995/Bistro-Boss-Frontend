@@ -1,60 +1,60 @@
 [
     {
-        "_id": "64301234f5a7e52ce1e8fa70",
+       
         "name": "Alice Brown",
         "details": "The product is decent but lacks some key features that I was looking for. It's good for basic use but not for advanced users.",
         "rating": 3
     },
     {
-        "_id": "64301245f5a7e52ce1e8fa71",
+     
         "name": "Chris Green",
         "details": "Excellent service! The team was very responsive, and the product exceeded my expectations. Will definitely recommend it.",
         "rating": 5
     },
     {
-        "_id": "64301256f5a7e52ce1e8fa72",
+     
         "name": "Emily Davis",
         "details": "The product is okay, but I faced some issues with the installation process. Customer support was helpful, though.",
         "rating": 3
     },
     {
-        "_id": "64301267f5a7e52ce1e8fa73",
+        
         "name": "Michael Scott",
         "details": "I loved the product! It works perfectly and has all the features I need. The team behind it is also very supportive.",
         "rating": 5
     },
     {
-        "_id": "64301278f5a7e52ce1e8fa74",
+        
         "name": "Linda Taylor",
         "details": "Not satisfied with the product. It did not meet my expectations, and the quality was subpar. Would not recommend it.",
         "rating": 1
     },
     {
-        "_id": "64301289f5a7e52ce1e8fa75",
+        
         "name": "David Wilson",
         "details": "The product is good but a bit overpriced. If the price was lower, I would consider it a better value for money.",
         "rating": 4
     },
     {
-        "_id": "6430129af5a7e52ce1e8fa76",
+        
         "name": "Sophia Martinez",
         "details": "Amazing product! The design is sleek, and it works like a charm. Highly recommend it to anyone in need of such a solution.",
         "rating": 5
     },
     {
-        "_id": "643012abf5a7e52ce1e8fa77",
+        
         "name": "James Brown",
         "details": "The product is decent but has some bugs that need fixing. Once those are addressed, it could be great.",
         "rating": 3
     },
     {
-        "_id": "643012bcf5a7e52ce1e8fa78",
+       
         "name": "Olivia Harris",
         "details": "I found the product to be very useful. It has all the features I need and is easy to use. Great value for money.",
         "rating": 4
     },
     {
-        "_id": "643012cdf5a7e52ce1e8fa79",
+        
         "name": "Ethan Moore",
         "details": "The product is excellent! It exceeded my expectations in every way. The customer service team was also very helpful.",
         "rating": 5

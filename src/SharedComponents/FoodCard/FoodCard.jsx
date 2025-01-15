@@ -1,9 +1,11 @@
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import useBistro from "../../Hooks/useBistro";
 import Swal from "sweetalert2";
+import useAxiosSecure from "../../Hooks/useAxiosSecure";
 
 /* eslint-disable react/prop-types */
 const FoodCard = ({ food }) => {
+  const axiosSecure= useAxiosSecure()
   const { user } = useBistro();
   const location = useLocation();
   const navigate = useNavigate();
@@ -22,8 +24,18 @@ const FoodCard = ({ food }) => {
         image,
         price,
         recipe,
-        orderTime
+        orderTime,
       };
+
+      axiosSecure.post("/carts", cardInfo).then((res) => {
+        if (res?.data?.insertedId) {
+          Swal.fire({
+            title: `${name} add to cart`,
+            icon: "success",
+            draggable: true,
+          });
+        }
+      });
     } else {
       Swal.fire({
         title: "You are not logged in",
