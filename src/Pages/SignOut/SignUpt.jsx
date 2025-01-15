@@ -2,7 +2,7 @@ import { useState } from "react";
 import woodBg from "../../assets/reservation/wood-grain-pattern-gray1x.png";
 import image from "../../assets/others/authentication2.png";
 import { FaEye, FaEyeSlash } from "react-icons/fa6";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import useBistro from "../../Hooks/useBistro";
 import { ToastContainer, toast } from "react-toastify";
 import { updateProfile } from "firebase/auth";
@@ -10,6 +10,8 @@ import { auth } from "../../Firebase/Firebase.config";
 import SocialLogin from "../../SharedComponents/SocialLogin/SocialLogin";
 const SignUp = () => {
   const navigate = useNavigate();
+  const location=useLocation();
+  const goBack= location?.pathname || "/";
   const notify = () => toast("Sign Up Successfull");
   const update = () => toast("Profile updated successfully");
   const error = () => toast("Something went wrong");
@@ -34,7 +36,7 @@ const SignUp = () => {
 
         if (currentUser?.email) {
           notify();
-          navigate("/");
+          navigate(goBack);
           form.reset();
           updateProfile(auth.currentUser, { displayName: name }).then(() => {
             update();

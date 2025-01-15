@@ -1,4 +1,4 @@
-/* eslint-disable no-unused-vars */
+
 import woodBg from "../../assets/reservation/wood-grain-pattern-gray1x.png";
 import image from "../../assets/others/authentication2.png";
 import { FaEye, FaEyeSlash } from "react-icons/fa6";
@@ -16,9 +16,8 @@ const SignIn = () => {
   const navigate= useNavigate();
   const location=useLocation();
   const goBack= location?.pathname || "/";
-  console.log(goBack);
   
-  const { user, loading,userSignIn } = useBistro();
+  const { userSignIn } = useBistro();
   const [disable, setDisable] = useState(true);
   const [seen, setSeen] = useState(false);
   const [eye, setEye] = useState(false);
@@ -45,7 +44,7 @@ const SignIn = () => {
         form.reset()
       }
     })
-    .catch(error=>{
+    .catch(()=>{
       alert("Something went wrong")
     })
   };
