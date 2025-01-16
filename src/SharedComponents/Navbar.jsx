@@ -7,8 +7,6 @@ import useCart from "../Hooks/useCart";
 const Navbar = () => {
   const { user, userSignOut } = useBistro();
   const [data] = useCart();
- 
-  
 
   const notify = () => toast("You are logged out");
   const handleLogOut = () => {
@@ -71,12 +69,15 @@ const Navbar = () => {
         <ul className="menu menu-horizontal px-1">{navLink}</ul>
       </div>
       <div className="navbar-end">
-        <button className="btn mr-2">
-          <FaCartShopping className="text-2xl" />
-          <div className="badge badge-secondary hidden sm:block">
-            +{data?.length}
-          </div>
-        </button>
+        <Link to={"/dashboard/my-cart"}>
+          <button className="btn mr-2">
+            <FaCartShopping className="text-2xl" />
+            <div className="badge badge-secondary hidden sm:block">
+              +{data?.length}
+            </div>
+          </button>
+        </Link>
+
         {user ? (
           <button
             onClick={handleLogOut}
