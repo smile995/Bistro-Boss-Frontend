@@ -2,10 +2,12 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import useBistro from "../../Hooks/useBistro";
 import Swal from "sweetalert2";
 import useAxiosSecure from "../../Hooks/useAxiosSecure";
+import useCart from "../../Hooks/useCart";
 
 /* eslint-disable react/prop-types */
 const FoodCard = ({ food }) => {
-  const axiosSecure= useAxiosSecure()
+  const axiosSecure = useAxiosSecure();
+  const [, refetch] = useCart();
   const { user } = useBistro();
   const location = useLocation();
   const navigate = useNavigate();
@@ -14,8 +16,6 @@ const FoodCard = ({ food }) => {
     if (user && user?.email) {
       const now = new Date();
       const orderTime = now.toLocaleString();
-      console.log(orderTime);
-
       const cardInfo = {
         foodId: item?._id || "",
         userName: user?.displayName,
@@ -34,6 +34,7 @@ const FoodCard = ({ food }) => {
             icon: "success",
             draggable: true,
           });
+          refetch();
         }
       });
     } else {

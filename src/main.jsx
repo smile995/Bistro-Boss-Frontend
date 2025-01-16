@@ -37,6 +37,9 @@ createRoot(document.getElementById("root")).render(
               </Route>
               <Route path="*" element={<ErrorPage />} />
             </Routes>
+            <Routes>
+              
+            </Routes>
           </BistroContext>
         </HelmetProvider>
       </QueryClientProvider>

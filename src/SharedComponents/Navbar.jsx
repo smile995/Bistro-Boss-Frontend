@@ -3,8 +3,13 @@ import "./shared.css";
 import useBistro from "../Hooks/useBistro";
 import { ToastContainer, toast } from "react-toastify";
 import { FaCartShopping } from "react-icons/fa6";
+import useCart from "../Hooks/useCart";
 const Navbar = () => {
   const { user, userSignOut } = useBistro();
+  const [data] = useCart();
+ 
+  
+
   const notify = () => toast("You are logged out");
   const handleLogOut = () => {
     userSignOut().then(() => {
@@ -68,7 +73,9 @@ const Navbar = () => {
       <div className="navbar-end">
         <button className="btn mr-2">
           <FaCartShopping className="text-2xl" />
-          <div className="badge badge-secondary hidden sm:block">+0</div>
+          <div className="badge badge-secondary hidden sm:block">
+            +{data?.length}
+          </div>
         </button>
         {user ? (
           <button
