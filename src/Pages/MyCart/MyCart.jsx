@@ -1,16 +1,43 @@
+import { FaTrash } from "react-icons/fa6";
 import useCart from "../../Hooks/useCart";
 import SectionTitle from "../../SharedComponents/SectionTitle/SectionTitle";
+import Swal from "sweetalert2";
+import useAxiosSecure from "../../Hooks/useAxiosSecure";
 
 const MyCart = () => {
-  const [data] = useCart();
+  const [data, refetch] = useCart();
+  const axiosSecure = useAxiosSecure();
   const totalPrice = data?.reduce((acc, item) => {
     return acc + item?.price;
   }, 0);
-
+  const handleDeleteFromCart = (id) => {
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        axiosSecure.delete(`carts/${id}`).then((res) => {
+          if (res?.data?.deletedCount) {
+            Swal.fire({
+              title: "Deleted!",
+              text: "Your item has been deleted.",
+              icon: "success",
+            });
+            refetch();
+          }
+        });
+      }
+    });
+  };
   return (
     <div>
       <SectionTitle subheading={"My Cart"} heading={"WANNA ADD MORE"} />
-      <div className="md:w-4/5 mx-auto bg-white rounded p-2 md:p-10">
+      <div className="md:h-4/5 mx-auto bg-white rounded p-2 md:p-10">
         <div className="flex justify-between items-center">
           <h3 className="md:text-2xl font-bold">Total Items: {data?.length}</h3>
           <h3 className="md:text-2xl font-bold">Total Price: {totalPrice}</h3>
@@ -21,59 +48,43 @@ const MyCart = () => {
         <div className="overflow-x-auto mt-5">
           <table className="table">
             {/* head */}
-            <thead className="bg-[#D1A054] text-white rounded">
-              <tr>
+            <thead>
+              <tr className="bg-[#D1A054] text-white">
                 <th>
-                  <label>
-                    <input type="checkbox" className="checkbox" />
-                  </label>
+                  <label>SR</label>
                 </th>
+                <th>Image</th>
                 <th>Name</th>
-                <th>Job</th>
-                <th>Favorite Color</th>
-                <th></th>
+                <th>Price</th>
+                <th>Action</th>
               </tr>
             </thead>
             <tbody>
-              {/* row 1 */}
-              <tr>
-                <th>
-                  <label>
-                    <input type="checkbox" className="checkbox" />
-                  </label>
-                </th>
-                <td>
-                  <div className="flex items-center gap-3">
+              {data?.map((item, index) => (
+                <tr key={item?._id}>
+                  <th>
+                    <label>{index + 1}</label>
+                  </th>
+                  <td>
                     <div className="avatar">
                       <div className="mask mask-squircle h-12 w-12">
-                        <img
-                          src="https://img.daisyui.com/images/profile/demo/2@94.webp"
-                          alt="Avatar Tailwind CSS Component"
-                        />
+                        <img src={item?.image} />
                       </div>
                     </div>
-                    <div>
-                      <div className="font-bold">Hart Hagerty</div>
-                      <div className="text-sm opacity-50">United States</div>
-                    </div>
-                  </div>
-                </td>
-                <td>
-                  Zemlak, Daniel and Leannon
-                  <br />
-                  <span className="badge badge-ghost badge-sm">
-                    Desktop Support Technician
-                  </span>
-                </td>
-                <td>Purple</td>
-                <th>
-                  <button className="btn btn-ghost btn-xs">details</button>
-                </th>
-              </tr>
-             
+                  </td>
+                  <td>{item?.name}</td>
+                  <td>{item?.price}</td>
+                  <th>
+                    <button
+                      onClick={() => handleDeleteFromCart(item?._id)}
+                      className="rounded p-3 bg-[#ba1c1c] text-white text-xl"
+                    >
+                      <FaTrash />
+                    </button>
+                  </th>
+                </tr>
+              ))}
             </tbody>
-         
-           
           </table>
         </div>
       </div>
