@@ -3,6 +3,7 @@ import useAxiosSecure from "../../Hooks/useAxiosSecure";
 import SectionTitle from "../../SharedComponents/SectionTitle/SectionTitle";
 import { FaTrash } from "react-icons/fa";
 import { FaUsers } from "react-icons/fa6";
+import Swal from "sweetalert2";
 
 const AllUser = () => {
   const axiosSecure = useAxiosSecure();
@@ -13,6 +14,57 @@ const AllUser = () => {
       return response.data;
     },
   });
+
+  const handleDeleteUser = (id) => {
+    Swal.fire({
+      title: "Are you sure?",
+      text: "User will deleted from database parmanently.",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, Delete ",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        axiosSecure.delete(`/users/${id}`).then((res) => {
+          if (res?.data?.deletedCount > 0) {
+            refetch();
+            Swal.fire({
+              title: "Deleted!",
+              text: "User has been deleted parmanently.",
+              icon: "success",
+            });
+          }
+        });
+      }
+    });
+  };
+
+  const handleMakeAdmin = (user) => {
+    const userId = user?._id;
+    Swal.fire({
+      title: "Are you sure?",
+      text: `${user.name} will get the super power`,
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, Make Admin",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        axiosSecure.patch(`/user/${userId}`).then((res) => {
+          if (res?.data?.modifiedCount) {
+            refetch();
+            Swal.fire({
+              title: `${user?.name}`,
+              text: "This user is admin now",
+              icon: "success",
+            });
+          }
+        });
+      }
+    });
+  };
 
   return (
     <div>
@@ -45,12 +97,22 @@ const AllUser = () => {
                   <td>{user.name}</td>
                   <td>{user.email}</td>
                   <td>
-                    <button className="rounded p-2 bg-[#D1A054] text-white text-xl">
-                      <FaUsers />
-                    </button>
+                    {user?.role === "admin" ? (
+                      "Admin"
+                    ) : (
+                      <button
+                        onClick={() => handleMakeAdmin(user)}
+                        className="rounded p-2 bg-[#D1A054] text-white text-xl"
+                      >
+                        <FaUsers />
+                      </button>
+                    )}
                   </td>
                   <td>
-                    <button className="rounded p-2 bg-[#ba1c1c] text-white text-xl">
+                    <button
+                      onClick={() => handleDeleteUser(user._id)}
+                      className="rounded p-2 bg-[#ba1c1c] text-white text-xl"
+                    >
                       <FaTrash />
                     </button>
                   </td>
