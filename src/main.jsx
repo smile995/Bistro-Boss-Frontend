@@ -21,6 +21,7 @@ import PaymentHistory from "./Pages/PaymentHistory/PaymentHistory.jsx";
 import MyCart from "./Pages/MyCart/MyCart.jsx";
 import AddReview from "./Pages/AddReview/AddReview.jsx";
 import MyBooking from "./Pages/MyBooking/MyBooking.jsx";
+import PrivateRoute from "./PrivateRoute/PrivateRoute.jsx";
 const queryClient = new QueryClient();
 
 createRoot(document.getElementById("root")).render(
@@ -42,13 +43,62 @@ createRoot(document.getElementById("root")).render(
               {/* errorpage */}
               <Route path="*" element={<ErrorPage />} />
               {/* dashboard layout for admin management */}
-              <Route path="/dashboard" element={<DashboardLayout />}>
-                <Route path="/dashboard/user-home" element={<UserHome/>} />
-                <Route path="/dashboard/reservation" element={<Reservation/>} />
-                <Route path="/dashboard/payment-history" element={<PaymentHistory/>} />
-                <Route path="/dashboard/my-cart" element={<MyCart/>} />
-                <Route path="/dashboard/add-review" element={<AddReview/>} />
-                <Route path="/dashboard/my-booking" element={<MyBooking/>} />
+              <Route
+                path="/dashboard"
+                element={
+                  <PrivateRoute>
+                    <DashboardLayout />
+                  </PrivateRoute>
+                }
+              >
+                <Route
+                  path="/dashboard/user-home"
+                  element={
+                    <PrivateRoute>
+                      <UserHome />
+                    </PrivateRoute>
+                  }
+                />
+                <Route
+                  path="/dashboard/reservation"
+                  element={
+                    <PrivateRoute>
+                      <Reservation />
+                    </PrivateRoute>
+                  }
+                />
+                <Route
+                  path="/dashboard/payment-history"
+                  element={
+                    <PrivateRoute>
+                      <PaymentHistory />
+                    </PrivateRoute>
+                  }
+                />
+                <Route
+                  path="/dashboard/my-cart"
+                  element={
+                    <PrivateRoute>
+                      <MyCart />
+                    </PrivateRoute>
+                  }
+                />
+                <Route
+                  path="/dashboard/add-review"
+                  element={
+                    <PrivateRoute>
+                      <AddReview />
+                    </PrivateRoute>
+                  }
+                />
+                <Route
+                  path="/dashboard/my-booking"
+                  element={
+                    <PrivateRoute>
+                      <MyBooking />
+                    </PrivateRoute>
+                  }
+                />
               </Route>
             </Routes>
           </BistroContext>

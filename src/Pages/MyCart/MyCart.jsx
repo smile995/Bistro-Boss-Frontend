@@ -37,10 +37,10 @@ const MyCart = () => {
   return (
     <div>
       <SectionTitle subheading={"My Cart"} heading={"WANNA ADD MORE"} />
-      <div className="md:h-4/5 mx-auto bg-white rounded p-2 md:p-10">
+      <div className="md:w-5/6 mx-auto bg-white rounded p-2 md:p-10">
         <div className="flex justify-between items-center">
           <h3 className="md:text-2xl font-bold">Total Items: {data?.length}</h3>
-          <h3 className="md:text-2xl font-bold">Total Price: {totalPrice}</h3>
+          <h3 className="md:text-2xl font-bold">Total Price: $ {totalPrice}</h3>
           <button className="bg-[#D1A054] px-3 text-white py-2 rounded text-xl font-semibold">
             Pay
           </button>

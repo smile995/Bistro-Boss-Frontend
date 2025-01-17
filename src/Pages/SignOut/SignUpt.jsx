@@ -2,51 +2,62 @@ import { useState } from "react";
 import woodBg from "../../assets/reservation/wood-grain-pattern-gray1x.png";
 import image from "../../assets/others/authentication2.png";
 import { FaEye, FaEyeSlash } from "react-icons/fa6";
-import { Link, useLocation, useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import useBistro from "../../Hooks/useBistro";
 import { ToastContainer, toast } from "react-toastify";
 import { updateProfile } from "firebase/auth";
 import { auth } from "../../Firebase/Firebase.config";
 import SocialLogin from "../../SharedComponents/SocialLogin/SocialLogin";
+import useAxiosPublic from "../../Hooks/useAxiosPublic";
 const SignUp = () => {
   const navigate = useNavigate();
-  const location=useLocation();
-  const goBack= location?.pathname || "/";
-  const notify = () => toast("Sign Up Successfull");
-  const update = () => toast("Profile updated successfully");
-  const error = () => toast("Something went wrong");
-  const { createUser } = useBistro();
 
+
+  const notify = (message) => toast(message);
+
+  const { createUser } = useBistro();
+  const axiosPublic = useAxiosPublic();
   const [seen, setSeen] = useState(false);
   const [eye, setEye] = useState(false);
   const handleSeenPassword = () => {
     setSeen(!seen);
     setEye(!eye);
   };
+
   const handleSignUp = (e) => {
     e.preventDefault();
     const form = e.target;
     const name = form.name.value;
     const email = form.email.value;
     const password = form.password.value;
+
     createUser(email, password)
       .then((result) => {
         const currentUser = result.user;
-        console.log(currentUser);
-
         if (currentUser?.email) {
-          notify();
-          navigate(goBack);
-          form.reset();
-          updateProfile(auth.currentUser, { displayName: name }).then(() => {
-            update();
+          updateProfile(auth?.currentUser, { displayName: name }).then(() => {
+            navigate("/");
+            form.reset();
+            const user = {
+              name: currentUser?.displayName,
+              email: currentUser?.email,
+            };
+            axiosPublic.post("/users", user).then((res) => {
+              console.log(res.data);
+
+              if (res?.data?.insertedId) {
+                notify("User profile updated successfully");
+              }
+            });
           });
         }
       })
-      .catch(() => {
-        error();
+      .catch((error) => {
+        const errMessage = error.message;
+        notify(errMessage);
       });
   };
+
   return (
     <div
       className="min-h-screen md:flex  md:gap-10 items-center md:p-10 p-5"
