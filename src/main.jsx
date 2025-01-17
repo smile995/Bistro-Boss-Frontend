@@ -22,6 +22,11 @@ import MyCart from "./Pages/MyCart/MyCart.jsx";
 import AddReview from "./Pages/AddReview/AddReview.jsx";
 import MyBooking from "./Pages/MyBooking/MyBooking.jsx";
 import PrivateRoute from "./PrivateRoute/PrivateRoute.jsx";
+import AdminHome from "./Pages/AdminHome.jsx/AdminHome.jsx";
+import AddItem from "./Pages/AddItems/AddItem.jsx";
+import ManageItem from "./Pages/ManageItems/ManageItem.jsx";
+import ManageBooking from "./Pages/ManageBooking/ManageBooking.jsx";
+import AllUser from "./Pages/AllUser/AllUser.jsx";
 const queryClient = new QueryClient();
 
 createRoot(document.getElementById("root")).render(
@@ -56,6 +61,46 @@ createRoot(document.getElementById("root")).render(
                   element={
                     <PrivateRoute>
                       <UserHome />
+                    </PrivateRoute>
+                  }
+                />
+                <Route
+                  path="/dashboard/admin-home"
+                  element={
+                    <PrivateRoute>
+                      <AdminHome />
+                    </PrivateRoute>
+                  }
+                />
+                <Route
+                  path="/dashboard/admin/add-items"
+                  element={
+                    <PrivateRoute>
+                      <AddItem />
+                    </PrivateRoute>
+                  }
+                />
+                <Route
+                  path="/dashboard/admin/manage-items"
+                  element={
+                    <PrivateRoute>
+                      <ManageItem />
+                    </PrivateRoute>
+                  }
+                />
+                <Route
+                  path="/dashboard/admin/manage-bookings"
+                  element={
+                    <PrivateRoute>
+                      <ManageBooking />
+                    </PrivateRoute>
+                  }
+                />
+                <Route
+                  path="/dashboard/admin/all-users"
+                  element={
+                    <PrivateRoute>
+                      <AllUser />
                     </PrivateRoute>
                   }
                 />

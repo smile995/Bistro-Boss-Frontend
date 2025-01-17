@@ -77,7 +77,7 @@ const MyCart = () => {
                   <th>
                     <button
                       onClick={() => handleDeleteFromCart(item?._id)}
-                      className="rounded p-3 bg-[#ba1c1c] text-white text-xl"
+                      className="rounded p-2 bg-[#ba1c1c] text-white text-xl"
                     >
                       <FaTrash />
                     </button>

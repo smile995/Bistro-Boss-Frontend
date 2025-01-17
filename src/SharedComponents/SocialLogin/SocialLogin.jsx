@@ -15,7 +15,15 @@ const SocialLogin = () => {
   const notify = (message) => toast(message);
   const provider = new GoogleAuthProvider();
   const gitProvider = new GithubAuthProvider();
-
+  const handleSocialLoginuser = (user) => {
+    axiosPublic.post("/users", user).then((res) => {
+      if (res.data.insertedId) {
+        notify("Your information is stored in database");
+      } else {
+        notify("Your are already in our database");
+      }
+    });
+  };
   const signinwithGoogle = () => {
     signInWithPopup(auth, provider)
       .then((result) => {
@@ -25,13 +33,7 @@ const SocialLogin = () => {
           email: currentUser.email,
         };
         if (currentUser.email) {
-          axiosPublic.post("/users", user).then((res) => {
-            if (res.data.insertedId) {
-              notify("Your information is stored in database");
-            } else {
-              notify("Your are already in our database");
-            }
-          });
+          handleSocialLoginuser(user);
         }
         notify("You are logged in successfully");
         navigate("/");
@@ -45,8 +47,12 @@ const SocialLogin = () => {
     signInWithPopup(auth, gitProvider)
       .then((result) => {
         const user = result.user;
-        console.log(user);
+        const socialUser = {
+          name: user.displayName,
+          email: user.email,
+        };
         if (user.email) {
+          handleSocialLoginuser(socialUser);
           notify();
           navigate("/");
         }
