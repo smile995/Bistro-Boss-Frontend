@@ -14,11 +14,11 @@ import {
   FaUtensils,
 } from "react-icons/fa6";
 import { NavLink, Outlet } from "react-router-dom";
-import useBistro from "../Hooks/useBistro";
+// import useBistro from "../Hooks/useBistro";
 
 const DashboardLayout = () => {
-  const { user } = useBistro();
-  console.log(user);
+  // const { user } = useBistro();
+ 
   
   const isAdmin = true;
   return (
