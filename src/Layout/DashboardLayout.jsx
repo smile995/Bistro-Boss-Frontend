@@ -14,13 +14,14 @@ import {
   FaUtensils,
 } from "react-icons/fa6";
 import { NavLink, Outlet } from "react-router-dom";
+import useAdmin from "../Hooks/useAdmin";
 // import useBistro from "../Hooks/useBistro";
 
 const DashboardLayout = () => {
   // const { user } = useBistro();
  
   
-  const isAdmin = true;
+  const [isAdmin] = useAdmin();
   return (
     <div className="flex min-h-screen max-w-screen-xl mx-auto">
       <div className="w-1/5 md:px-5 px-2 md:py-8 py-4 bg-[#D1A054] ">
