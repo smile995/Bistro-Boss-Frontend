@@ -1,12 +1,14 @@
-import {  useState } from "react";
+import { useEffect, useState } from "react";
 import useAxiosPublic from "./useAxiosPublic";
 
 const useManu = () => {
   const axiosPublic = useAxiosPublic();
   const [manus, setManus] = useState([]);
-  axiosPublic.get("/foods").then((res) => {
-    setManus(res.data);
-  });
+  useEffect(() => {
+    axiosPublic.get("/foods").then((res) => {
+      setManus(res.data);
+    });
+  }, [axiosPublic]);
   return [manus];
 };
 

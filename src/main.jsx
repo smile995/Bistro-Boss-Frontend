@@ -27,6 +27,7 @@ import AddItem from "./Pages/AddItems/AddItem.jsx";
 import ManageItem from "./Pages/ManageItems/ManageItem.jsx";
 import ManageBooking from "./Pages/ManageBooking/ManageBooking.jsx";
 import AllUser from "./Pages/AllUser/AllUser.jsx";
+import AdminRoute from "./PrivateRoute/AdminRoute.jsx";
 const queryClient = new QueryClient();
 
 createRoot(document.getElementById("root")).render(
@@ -67,41 +68,42 @@ createRoot(document.getElementById("root")).render(
                 <Route
                   path="/dashboard/admin-home"
                   element={
-                    <PrivateRoute>
+                    <AdminRoute>
+                      {" "}
                       <AdminHome />
-                    </PrivateRoute>
+                    </AdminRoute>
                   }
                 />
                 <Route
                   path="/dashboard/admin/add-items"
                   element={
-                    <PrivateRoute>
+                    <AdminRoute>
                       <AddItem />
-                    </PrivateRoute>
+                    </AdminRoute>
                   }
                 />
                 <Route
                   path="/dashboard/admin/manage-items"
                   element={
-                    <PrivateRoute>
+                    <AdminRoute>
                       <ManageItem />
-                    </PrivateRoute>
+                    </AdminRoute>
                   }
                 />
                 <Route
                   path="/dashboard/admin/manage-bookings"
                   element={
-                    <PrivateRoute>
+                    <AdminRoute>
                       <ManageBooking />
-                    </PrivateRoute>
+                    </AdminRoute>
                   }
                 />
                 <Route
                   path="/dashboard/admin/all-users"
                   element={
-                    <PrivateRoute>
+                    <AdminRoute>
                       <AllUser />
-                    </PrivateRoute>
+                    </AdminRoute>
                   }
                 />
                 <Route

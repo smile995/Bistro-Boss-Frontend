@@ -16,11 +16,11 @@ const AdminRoute = ({ children }) => {
         <span className="loading loading-spinner text-neutral"></span>
       </div>
     </div>;
-  } else if (user && isAdmin) {
-    return children;
-  } else {
-    return <Navigate to={"/signin"} state={location.pathname} replace />;
   }
+  if (user && isAdmin) {
+    return children;
+  }
+  return <Navigate to={"/signin"} state={location.pathname} replace />;
 };
 
 export default AdminRoute;
