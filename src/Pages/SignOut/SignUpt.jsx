@@ -12,7 +12,6 @@ import useAxiosPublic from "../../Hooks/useAxiosPublic";
 const SignUp = () => {
   const navigate = useNavigate();
 
-
   const notify = (message) => toast(message);
 
   const { createUser } = useBistro();
@@ -43,8 +42,6 @@ const SignUp = () => {
               email: currentUser?.email,
             };
             axiosPublic.post("/users", user).then((res) => {
-              console.log(res.data);
-
               if (res?.data?.insertedId) {
                 notify("User profile updated successfully");
               }
