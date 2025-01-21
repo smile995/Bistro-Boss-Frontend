@@ -6,16 +6,22 @@ import Swal from "sweetalert2";
 import SectionTitle from "../../SharedComponents/SectionTitle/SectionTitle";
 import { FaUtensils } from "react-icons/fa6";
 import { useParams } from "react-router";
+import { useEffect, useState } from "react";
 const imageHostingkey = import.meta.env.VITE_image_api;
 const imageHostingApi = `https://api.imgbb.com/1/upload?key=${imageHostingkey}`;
 const UpdateItem = () => {
-  const {id} = useParams();
-  console.log(id);
-  
-  const [, refetch] = useManu();
   const { register, handleSubmit, reset } = useForm();
   const axiosPublic = useAxiosPublic();
   const axiosSecure = useAxiosSecure();
+  const { id } = useParams();
+  const [updateData, setupdateData] = useState();
+  const [, refetch] = useManu();
+  useEffect(() => {
+    axiosSecure.get(`/foods/${id}`).then((res) => {
+      setupdateData(res.data);
+    });
+  }, [axiosSecure, id]);
+
   const onSubmit = async (data) => {
     const imageFile = { image: data.image[0] };
     const res = await axiosPublic.post(imageHostingApi, imageFile, {
@@ -47,7 +53,10 @@ const UpdateItem = () => {
   return (
     <div>
       <div>
-        <SectionTitle subheading={"What's Update?"} heading={"Update An Item"} />
+        <SectionTitle
+          subheading={"What's Update?"}
+          heading={"Update An Item"}
+        />
       </div>
       <div className="md:w-5/6 mx-auto bg-white rounded p-2 md:p-10">
         <div>
@@ -58,6 +67,7 @@ const UpdateItem = () => {
               </label>
               <input
                 type="text"
+                defaultValue={updateData?.name}
                 {...register("name")}
                 placeholder="Food Name..."
                 className="input input-bordered"
@@ -70,7 +80,7 @@ const UpdateItem = () => {
                   <span className="label-text font-bold">Category*</span>
                 </div>
                 <select
-                  defaultValue="default"
+                  defaultValue={updateData?.category}
                   {...register("category")}
                   className="select select-bordered"
                 >
@@ -91,6 +101,7 @@ const UpdateItem = () => {
                 </label>
                 <input
                   type="number"
+                  defaultValue={updateData?.price}
                   placeholder="Price"
                   {...register("price")}
                   className="input input-bordered"
@@ -104,6 +115,7 @@ const UpdateItem = () => {
               </label>
               <textarea
                 {...register("recipe")}
+                defaultValue={updateData?.recipe}
                 className="textarea textarea-bordered"
                 placeholder="Write details abot food"
               ></textarea>
