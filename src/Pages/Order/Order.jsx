@@ -5,12 +5,15 @@ import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
 import "react-tabs/style/react-tabs.css";
 import CategoryFood from "./Components/CategoryFood";
 const Order = () => {
-  const [manus] = useManu();
-  const pizzas = manus?.filter((item) => item.category === "pizza");
-  const salads = manus?.filter((item) => item.category === "salad");
-  const soups = manus?.filter((item) => item.category === "soup");
-  const desserts = manus?.filter((item) => item.category === "dessert");
-  const drinks = manus?.filter((item) => item.category === "drinks");
+  const [menus] = useManu();
+  const pizzas = menus?.filter((item) => item.category === "pizza");
+  const salads = menus?.filter((item) => item.category === "salad");
+  const soups = menus?.filter((item) => item.category === "soup");
+  const desserts = menus?.filter((item) => item.category === "dessert");
+  const drinks = menus?.filter((item) => item.category === "drinks");
+
+  console.log(menus,"from order page");
+  
 
   return (
     <div>

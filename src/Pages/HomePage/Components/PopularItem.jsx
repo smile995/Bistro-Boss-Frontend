@@ -4,13 +4,13 @@ import useManu from "../../../Hooks/useManu";
 import { Link } from "react-router-dom";
 
 const PopularItem = () => {
-  const [manus]= useManu();
-  const popularData = manus?.filter((item) => item.category === "popular");
+  const [menus]= useManu();
+  const popularData = menus?.filter((item) => item.category === "popular");
   return (
     <div className="space-y-5 mb-4">
       <SectionTitle subheading="Check it out" heading="from our manu" />
       <div className=" grid md:grid-cols-2 gap-5 p-3">
-        {popularData.map((manu) => (
+        {popularData?.map((manu) => (
           <ItemViewer key={manu._id} manu={manu} />
         ))}
       </div>
