@@ -1,14 +1,17 @@
-import { FaUtensils } from "react-icons/fa6";
-import SectionTitle from "../../SharedComponents/SectionTitle/SectionTitle";
 import { useForm } from "react-hook-form";
+import useManu from "../../Hooks/useManu";
 import useAxiosPublic from "../../Hooks/useAxiosPublic";
 import useAxiosSecure from "../../Hooks/useAxiosSecure";
 import Swal from "sweetalert2";
-import useManu from "../../Hooks/useManu";
+import SectionTitle from "../../SharedComponents/SectionTitle/SectionTitle";
+import { FaUtensils } from "react-icons/fa6";
+import { useParams } from "react-router";
 const imageHostingkey = import.meta.env.VITE_image_api;
 const imageHostingApi = `https://api.imgbb.com/1/upload?key=${imageHostingkey}`;
-
-const AddItem = () => {
+const UpdateItem = () => {
+  const {id} = useParams();
+  console.log(id);
+  
   const [, refetch] = useManu();
   const { register, handleSubmit, reset } = useForm();
   const axiosPublic = useAxiosPublic();
@@ -44,7 +47,7 @@ const AddItem = () => {
   return (
     <div>
       <div>
-        <SectionTitle subheading={"What's New?"} heading={"Add An Item"} />
+        <SectionTitle subheading={"What's Update?"} heading={"Update An Item"} />
       </div>
       <div className="md:w-5/6 mx-auto bg-white rounded p-2 md:p-10">
         <div>
@@ -118,7 +121,7 @@ const AddItem = () => {
                 className="px-5 py-3 rounded text-white font-semibold bg-gradient-to-r from-[#835D23] to-[#B58130] flex items-center gap-2 "
               >
                 {" "}
-                Add Item <FaUtensils />{" "}
+                Update Item <FaUtensils />{" "}
               </button>
             </div>
           </form>
@@ -128,4 +131,4 @@ const AddItem = () => {
   );
 };
 
-export default AddItem;
+export default UpdateItem;

@@ -28,6 +28,7 @@ import ManageItem from "./Pages/ManageItems/ManageItem.jsx";
 import ManageBooking from "./Pages/ManageBooking/ManageBooking.jsx";
 import AllUser from "./Pages/AllUser/AllUser.jsx";
 import AdminRoute from "./PrivateRoute/AdminRoute.jsx";
+import UpdateItem from "./Pages/UpdateItem/UpdateItem.jsx";
 const queryClient = new QueryClient();
 
 createRoot(document.getElementById("root")).render(
@@ -89,6 +90,15 @@ createRoot(document.getElementById("root")).render(
                       <ManageItem />
                     </AdminRoute>
                   }
+                />
+                <Route
+                  path="/dashboard/update/:id"
+                  element={
+                    <AdminRoute>
+                      <UpdateItem />
+                    </AdminRoute>
+                  }
+                  
                 />
                 <Route
                   path="/dashboard/admin/manage-bookings"

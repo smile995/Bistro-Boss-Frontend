@@ -4,6 +4,7 @@ import useManu from "../../Hooks/useManu";
 import { FaEdit } from "react-icons/fa";
 import useAxiosSecure from "../../Hooks/useAxiosSecure";
 import Swal from "sweetalert2";
+import { Link } from "react-router-dom";
 
 const ManageItem = () => {
   const axiosSecure = useAxiosSecure();
@@ -33,6 +34,7 @@ const ManageItem = () => {
       }
     });
   };
+
   return (
     <div>
       <div>
@@ -40,7 +42,7 @@ const ManageItem = () => {
       </div>
       <div className="md:w-5/6 mx-auto bg-white rounded p-2 md:p-10">
         <div>
-          <h3 className="md:text-2xl font-bold">Total Items: {menus.length}</h3>
+          <h3 className="md:text-2xl font-bold">Total Items: {menus?.length}</h3>
         </div>
         <div className="overflow-x-auto mt-5">
           <table className="table">
@@ -72,9 +74,11 @@ const ManageItem = () => {
                   <td>{menu?.price}</td>
 
                   <td>
-                    <button className="rounded p-2 bg-[#D1A054] text-white text-xl">
-                      <FaEdit />
-                    </button>
+                    <Link to={`/dashboard/update/${menu?._id}`}>
+                      <button className="rounded p-2 bg-[#D1A054] text-white text-xl">
+                        <FaEdit />
+                      </button>
+                    </Link>
                   </td>
                   <td>
                     <button
