@@ -7,8 +7,6 @@ const useManu = () => {
     queryKey:["foods"],
     queryFn: async ()=>{
       const res= await axiosPublic.get("/foods")
-      console.log(res.data);
-      
       return res.data
     }
   })

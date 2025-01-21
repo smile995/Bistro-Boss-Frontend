@@ -57,14 +57,18 @@ const FoodCard = ({ food }) => {
     <div className="bg-[#f2f2f2] rounded flex flex-col">
       <div className="relative">
         <figure>
-          <img className="rounded-t w-full" src={image} alt="Food Item" />
+          <img
+            className="rounded-t w-full h-full"
+            src={image}
+            alt="Food Item"
+          />
         </figure>
         <p className="bg-[#e8e8e8] text-[#BB8506] border-2 px-3 py-1 font-semibold rounded absolute top-4 right-4 text-xl">
           ${price}
         </p>
       </div>
-      <div className="card-body text-center flex flex-col flex-grow">
-        <h2 className="text-2xl font-semibold">{name}</h2>
+      <div className="card-body  flex flex-col flex-grow">
+        <h2 className="text-2xl text-center font-semibold">{name}</h2>
         <p className="flex-grow my-4">{recipe}</p>
         <div className="card-actions justify-center">
           <Link>

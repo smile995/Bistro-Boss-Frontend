@@ -79,6 +79,7 @@ const AddItem = () => {
                   <option value="drinks">Drinks</option>
                   <option value="soup">Soup</option>
                   <option value="dessert">Dessert</option>
+                  <option value="popular">Popular</option>
                 </select>
               </label>
               <div className="form-control flex-1">
