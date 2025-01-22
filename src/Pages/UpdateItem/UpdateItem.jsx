@@ -22,22 +22,21 @@ const UpdateItem = () => {
     });
   }, [axiosSecure, id]);
 
-  const onSubmit = async (data) => {
+  const onSubmit = async (data) => { 
     const imageFile = { image: data.image[0] };
     const res = await axiosPublic.post(imageHostingApi, imageFile, {
       headers: { "content-type": "multipart/form-data" },
-    });
+    });  
     const imageLink = res?.data?.data?.display_url;
-    if (res?.data?.success) {
-      const foodItem = {
-        name: data?.name,
-        image: imageLink,
-        price: parseFloat(data?.price),
-        category: data?.category,
-        recipe: data?.recipe,
-      };
-      const res = await axiosSecure.post("/foods", foodItem);
-      if (res.data.insertedId) {
+    const foodItem = {
+      name: data?.name,
+      image: imageLink,
+      price: parseFloat(data?.price),
+      category: data?.category,
+      recipe: data?.recipe,
+    };
+      const response = await axiosSecure.patch(`/foods/${id}`, foodItem);
+      if (response.data.modifiedCount>0) {
         refetch();
         reset();
         Swal.fire({
@@ -48,7 +47,7 @@ const UpdateItem = () => {
           timer: 1500,
         });
       }
-    }
+  
   };
   return (
     <div>
@@ -100,12 +99,12 @@ const UpdateItem = () => {
                   <span className="label-text font-bold">Price*</span>
                 </label>
                 <input
-                  type="number"
+                  type="text"
                   defaultValue={updateData?.price}
                   placeholder="Price"
                   {...register("price")}
                   className="input input-bordered"
-                  required
+                  
                 />
               </div>
             </div>

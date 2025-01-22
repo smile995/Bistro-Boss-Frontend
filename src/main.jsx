@@ -29,6 +29,7 @@ import ManageBooking from "./Pages/ManageBooking/ManageBooking.jsx";
 import AllUser from "./Pages/AllUser/AllUser.jsx";
 import AdminRoute from "./PrivateRoute/AdminRoute.jsx";
 import UpdateItem from "./Pages/UpdateItem/UpdateItem.jsx";
+import Payment from "./Pages/Payment/Payment.jsx";
 const queryClient = new QueryClient();
 
 createRoot(document.getElementById("root")).render(
@@ -63,6 +64,14 @@ createRoot(document.getElementById("root")).render(
                   element={
                     <PrivateRoute>
                       <UserHome />
+                    </PrivateRoute>
+                  }
+                />
+                <Route
+                  path="/dashboard/payment"
+                  element={
+                    <PrivateRoute>
+                      <Payment />
                     </PrivateRoute>
                   }
                 />
