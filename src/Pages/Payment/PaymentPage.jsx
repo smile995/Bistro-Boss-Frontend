@@ -3,22 +3,23 @@ import { CardElement, useElements, useStripe } from "@stripe/react-stripe-js";
 import { useEffect, useState } from "react";
 import useAxiosSecure from "../../Hooks/useAxiosSecure";
 import useCart from "../../Hooks/useCart";
+import useBistro from "../../Hooks/useBistro";
+import Swal from "sweetalert2";
 const PaymentPage = () => {
   const stripe = useStripe();
   const elemets = useElements();
+  const { user } = useBistro();
   const [payError, setPayError] = useState();
   const [clientSecret, setClientSecret] = useState();
   const axiosSecure = useAxiosSecure();
   const [cart] = useCart();
   const totalPrice = cart?.reduce((total, item) => total + item.price, 0);
-  console.log(totalPrice);
 
   useEffect(() => {
     axiosSecure
       .post("/create-payment-intent", { amount: totalPrice })
       .then((res) => {
-        console.log(res.data.clientSecret);
-        setClientSecret(res?.data?.clientSecret)
+        setClientSecret(res?.data?.clientSecret);
       });
   }, [axiosSecure, totalPrice]);
   const handleSubmit = async (event) => {
@@ -38,6 +39,32 @@ const PaymentPage = () => {
       setPayError(error?.message);
     } else {
       setPayError("");
+    }
+
+    const { paymentIntent, error: confirlError } =
+      await stripe.confirmCardPayment(clientSecret, {
+        payment_method: {
+          card,
+          billing_details: {
+            name: user?.displayName,
+            email: user?.email,
+          },
+        },
+      });
+
+    if (confirlError) {
+      setPayError(confirlError.message);
+    } else {
+      console.log(paymentIntent);
+
+      if (paymentIntent.status == "succeeded") {
+        Swal.fire({
+          icon: "success",
+          title: "Payment Successfull",
+          text: `Transection Id: ${paymentIntent.id}`,
+          footer: "Save the transection of any issue",
+        });
+      }
     }
   };
   return (
