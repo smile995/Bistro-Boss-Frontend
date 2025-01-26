@@ -12,7 +12,7 @@ const PaymentPage = () => {
   const [payError, setPayError] = useState();
   const [clientSecret, setClientSecret] = useState();
   const axiosSecure = useAxiosSecure();
-  const [cart] = useCart();
+  const [cart, refetch] = useCart();
   const totalPrice = cart?.reduce((total, item) => total + item.price, 0);
 
   useEffect(() => {
@@ -55,15 +55,30 @@ const PaymentPage = () => {
     if (confirlError) {
       setPayError(confirlError.message);
     } else {
-      console.log(paymentIntent);
 
       if (paymentIntent.status == "succeeded") {
-        Swal.fire({
-          icon: "success",
-          title: "Payment Successfull",
-          text: `Transection Id: ${paymentIntent.id}`,
-          footer: "Save the transection of any issue",
-        });
+        const paymentInfo = {
+          name: user.displayName,
+          email: user.email,
+          date: new Date(),
+          status: "pending",
+          transactionId: paymentIntent.id,
+          cartIds: cart.map((item) => item._id),
+          foodIds: cart.map((item) => item.foodId),
+        };
+        const res = await axiosSecure.post("/payments", paymentInfo);
+        if (
+          res?.data?.paymentResult?.insertedId &&
+          res?.data?.deletedResult?.deletedCount > 0
+        ) {
+          refetch();
+          Swal.fire({
+            icon: "success",
+            title: "Payment Successfull",
+            text: `Transection Id: ${paymentIntent.id}`,
+            footer: `Your Order id: ${res?.data?.paymentResult?.insertedId}`,
+          });
+        }
       }
     }
   };

@@ -11,10 +11,6 @@ const Order = () => {
   const soups = menus?.filter((item) => item.category === "soup");
   const desserts = menus?.filter((item) => item.category === "dessert");
   const drinks = menus?.filter((item) => item.category === "drinks");
-
-  console.log(menus,"from order page");
-  
-
   return (
     <div>
       <div>
