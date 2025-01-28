@@ -5,8 +5,6 @@ import { FaBookOpen, FaMoneyBill, FaUtensils } from "react-icons/fa6";
 
 const UserHome = () => {
   const { user } = useBistro();
-  console.log(user);
-
   const axiosSecure = useAxiosSecure();
   const [reviews, setReviews] = useState(0);
   const [orders, setOrder] = useState(0);
