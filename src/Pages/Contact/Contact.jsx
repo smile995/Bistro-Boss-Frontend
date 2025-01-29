@@ -8,9 +8,16 @@ import ItemCover from "../../SharedComponents/ItemCover/ItemCover";
 import SectionTitle from "../../SharedComponents/SectionTitle/SectionTitle";
 import cover from "../../assets/contact/banner.jpg";
 
-
 const Contact = () => {
- 
+  const handleContact = (e) => {
+    e.preventDefault();
+    const form = e.target;
+    const name = form.name.value;
+    const email = form.email.value;
+    const message = form.message.value;
+    const phone = form.phone.value;
+    console.log(name, email, message, phone);
+  };
   return (
     <div>
       <div>
@@ -62,7 +69,7 @@ const Contact = () => {
         />
       </div>
       <div className="bg-[#f2f2f2] md:p-10 p-5 mb-10 rounded">
-        <form>
+        <form onSubmit={handleContact}>
           <div className="md:flex justify-between gap-10">
             <div className="form-control md:w-1/2">
               <label className="label">
@@ -71,6 +78,7 @@ const Contact = () => {
               <input
                 type="text"
                 placeholder="Enter Your Name"
+                name="name"
                 className="input input-bordered"
                 required
               />
@@ -81,6 +89,7 @@ const Contact = () => {
               </label>
               <input
                 type="email"
+                name="email"
                 placeholder="Example@gmail.com"
                 className="input input-bordered"
                 required
@@ -93,6 +102,7 @@ const Contact = () => {
             </label>
             <input
               type="text"
+              name="phone"
               placeholder="Your Phone Number"
               className="input input-bordered"
               required
@@ -102,7 +112,10 @@ const Contact = () => {
             <label className="label">
               <span className="label-text">Message*</span>
             </label>
-            <textarea className="w-full input input-bordered min-h-36"></textarea>
+            <textarea
+              name="message"
+              className="w-full input input-bordered min-h-36"
+            ></textarea>
           </div>
 
           <div className="mt-6 flex items-center justify-center">
