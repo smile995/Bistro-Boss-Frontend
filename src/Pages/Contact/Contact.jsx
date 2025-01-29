@@ -1,9 +1,16 @@
-import { FaClock, FaLocationDot, FaPaperPlane, FaPhoneVolume } from "react-icons/fa6";
+import {
+  FaClock,
+  FaLocationDot,
+  FaPaperPlane,
+  FaPhoneVolume,
+} from "react-icons/fa6";
 import ItemCover from "../../SharedComponents/ItemCover/ItemCover";
 import SectionTitle from "../../SharedComponents/SectionTitle/SectionTitle";
 import cover from "../../assets/contact/banner.jpg";
 
+
 const Contact = () => {
+ 
   return (
     <div>
       <div>
@@ -97,14 +104,15 @@ const Contact = () => {
             </label>
             <textarea className="w-full input input-bordered min-h-36"></textarea>
           </div>
-          <div>
-            React capcha will be come here
-          </div>
+
           <div className="mt-6 flex items-center justify-center">
             <button
               type="submit"
               className="px-5 py-3 rounded text-white font-semibold bg-gradient-to-r from-[#835D23] to-[#B58130] flex items-center gap-2 "
-            > Send Message <FaPaperPlane/> </button>
+            >
+              {" "}
+              Send Message <FaPaperPlane />{" "}
+            </button>
           </div>
         </form>
       </div>

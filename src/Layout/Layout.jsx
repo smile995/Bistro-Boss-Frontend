@@ -6,9 +6,8 @@ import useBistro from "../Hooks/useBistro";
 const Layout = () => {
   const { loading } = useBistro();
   const location = useLocation();
-  const pathname =
-    location.pathname == "/signin" || location.pathname == "/signup";
-
+  const pathname =location.pathname == "/signin" || location.pathname == "/signup";
+// service:  service_zflzwg8
   return (
     <div className="max-w-screen-xl mx-auto ">
       {pathname ? "" : <Navbar />}

@@ -4,9 +4,12 @@ import useBistro from "../Hooks/useBistro";
 import { ToastContainer, toast } from "react-toastify";
 import { FaCartShopping } from "react-icons/fa6";
 import useCart from "../Hooks/useCart";
+import useAdmin from "../Hooks/useAdmin";
+import { FaRunning } from "react-icons/fa";
 const Navbar = () => {
   const { user, userSignOut } = useBistro();
   const [data] = useCart();
+  const [isAdmin] = useAdmin();
 
   const notify = () => toast("You are logged out");
   const handleLogOut = () => {
@@ -69,14 +72,31 @@ const Navbar = () => {
         <ul className="menu menu-horizontal px-1">{navLink}</ul>
       </div>
       <div className="navbar-end">
-        <Link to={"/dashboard/my-cart"}>
-          <button className="btn mr-2">
-            <FaCartShopping className="text-2xl" />
-            <div className="badge badge-secondary hidden sm:block">
-              +{data?.length}
-            </div>
-          </button>
-        </Link>
+        {user && (
+          <Link to={isAdmin ? "/dashboard/admin-home" : "/dashboard/my-cart"}>
+            {isAdmin ? (
+              <button className="btn mr-2">
+                Go Dashboard
+                <FaRunning className="text-2xl" />
+              </button>
+            ) : (
+              <button className="btn mr-2">
+                <FaCartShopping className="text-2xl" />
+                <div className="badge badge-secondary hidden sm:block">
+                  +{data?.length ? data?.length : "0"}
+                </div>
+              </button>
+            )}
+          </Link>
+        )}
+        {/* {isAdmin === true && (
+          <Link to={"/dashboard/admin-home"}>
+            <button className="btn mr-2">
+              Go Dashboard
+              <FaRunning className="text-2xl" />
+            </button>
+          </Link>
+        )} */}
 
         {user ? (
           <button

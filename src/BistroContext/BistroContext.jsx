@@ -18,15 +18,12 @@ const BistroContext = ({ children }) => {
   const axiosPublic = useAxiosPublic();
 
   const createUser = (email, password) => {
-    setLoading(true);
     return createUserWithEmailAndPassword(auth, email, password);
   };
   const userSignIn = (email, password) => {
-    setLoading(true);
     return signInWithEmailAndPassword(auth, email, password);
   };
   const userSignOut = () => {
-    // setLoading(true)
     return signOut(auth);
   };
   const centralData = {
@@ -39,19 +36,21 @@ const BistroContext = ({ children }) => {
   useEffect(() => {
     const unSubscribe = onAuthStateChanged(auth, (user) => {
       setUser(user);
-      setLoading(false);
       if (user) {
         const userInfo = {
           name: user.displayName,
           email: user.email,
         };
         // issue a token
-        axiosPublic.post("/jwt",userInfo).then((res) => {
+        axiosPublic.post("/jwt", userInfo).then((res) => {
           const token = res?.data?.token;
           localStorage.setItem("access-token", token);
+
+          setLoading(false);
         });
       } else {
         // remove token
+        setLoading(false)
         localStorage.removeItem("access-token");
       }
     });
