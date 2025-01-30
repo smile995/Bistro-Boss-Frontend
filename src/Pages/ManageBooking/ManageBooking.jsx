@@ -15,19 +15,29 @@ const ManageBooking = () => {
   });
   const handleConfirmBooking = (id) => {
     Swal.fire({
-      title: "Do you want to save the changes?",
+      icon: "question",
+      title: "What's your action about this order",
       showDenyButton: true,
       showCancelButton: true,
-      confirmButtonText: "Confirm",
+      confirmButtonText: `Confirm`,
       denyButtonText: `Denied`,
-    }).then((result) => {
-      /* Read more about isConfirmed, isDenied below */
-      if (result.isConfirmed) {
-        Swal.fire("Saved!", "", "success");
-        console.log("confiem ", id);
-      } else if (result.isDenied) {
-        Swal.fire("Changes are not saved", "", "info");
-        console.log("denied ", id);
+    }).then(async (result) => {
+      if (result?.isConfirmed) {
+        const res = await axiosSecure.patch(`/tables/${id}`, {
+          status: "confirm",
+        });
+        if (res?.data?.modifiedCount) {
+          refetch();
+          Swal.fire("Order Confirm", "", "success");
+        }
+      } else if (result?.isDenied) {
+        const res = await axiosSecure.patch(`/tables/${id}`, {
+          status: "denied",
+        });
+        if (res?.data?.modifiedCount) {
+          refetch();
+          Swal.fire("Order Denied", "", "error");
+        }
       }
     });
   };

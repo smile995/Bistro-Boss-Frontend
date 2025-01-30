@@ -55,11 +55,11 @@ const PaymentPage = () => {
     if (confirlError) {
       setPayError(confirlError.message);
     } else {
-
       if (paymentIntent.status == "succeeded") {
         const paymentInfo = {
           name: user.displayName,
           email: user.email,
+          price: totalPrice,
           date: new Date(),
           status: "pending",
           transactionId: paymentIntent.id,
