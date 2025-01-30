@@ -7,16 +7,34 @@ import {
 import ItemCover from "../../SharedComponents/ItemCover/ItemCover";
 import SectionTitle from "../../SharedComponents/SectionTitle/SectionTitle";
 import cover from "../../assets/contact/banner.jpg";
-
+import useAxiosSecure from "../../Hooks/useAxiosSecure";
+import Swal from "sweetalert2";
 const Contact = () => {
-  const handleContact = (e) => {
+  const axiosSecure = useAxiosSecure();
+  const handleContact = async (e) => {
     e.preventDefault();
     const form = e.target;
     const name = form.name.value;
     const email = form.email.value;
     const message = form.message.value;
     const phone = form.phone.value;
-    console.log(name, email, message, phone);
+    const contactData = {
+      name,
+      email,
+      message,
+      phone,
+    };
+    const res = await axiosSecure.post("/contacts", contactData);
+    if (res?.data?.insertedId) {
+      form.reset()
+      Swal.fire({
+        position: "center",
+        icon: "success",
+        title: "Your message submited successfully",
+        showConfirmButton: false,
+        timer: 2000
+      });
+    }
   };
   return (
     <div>

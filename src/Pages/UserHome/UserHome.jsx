@@ -9,10 +9,12 @@ const UserHome = () => {
   const [reviews, setReviews] = useState(0);
   const [orders, setOrder] = useState(0);
   const [foods, setFood] = useState(0);
+  const [contacts, setContact] = useState(0);
   axiosSecure.get(`/user-state/${user?.email}`).then((res) => {
     setFood(res?.data?.menus);
     setReviews(res?.data?.reviews);
     setOrder(res?.data?.orders);
+    setContact(res?.data?.contacts);
   });
 
   return (
@@ -79,7 +81,7 @@ const UserHome = () => {
               Reviews: {reviews}
             </h3>
             <h3 className="text-2xl font-semibold text-[#FF8042]">
-              Payments: {orders}
+              Contact: {contacts}
             </h3>
           </div>
         </div>

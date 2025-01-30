@@ -1,8 +1,11 @@
 import { FaBookOpen } from "react-icons/fa6";
 import SectionTitle from "../../SharedComponents/SectionTitle/SectionTitle";
+import useAxiosSecure from "../../Hooks/useAxiosSecure";
+import Swal from "sweetalert2";
 
 const Reservation = () => {
-  const handleReservation = (e) => {
+  const axiosSecure = useAxiosSecure();
+  const handleReservation = async (e) => {
     e.preventDefault();
     const form = e.target;
     const date = form.date.value;
@@ -11,7 +14,27 @@ const Reservation = () => {
     const name = form.name.value;
     const email = form.email.value;
     const phone = form.phone.value;
-    console.log(date, name, time, guest, email, phone);
+    const tableBookingInfo = {
+      date,
+      name,
+      time,
+      guest,
+      email,
+      phone,
+      status: "pending",
+    };
+    const res = await axiosSecure.post("/tables", tableBookingInfo);
+    if (res.data.insertedId) {
+      form.reset();
+      Swal.fire({
+        position: "center",
+        icon: "success",
+        title:
+          "Your reservation is in panding now. please wait for confirmation",
+        showConfirmButton: false,
+        timer: 2000,
+      });
+    }
   };
   return (
     <div>
