@@ -1,9 +1,8 @@
 
 
 const ManageBooking = () => {
-  return (
-    <div>ManageBooking</div>
-  )
-}
+ 
+  return <div>ManageBooking</div>;
+};
 
-export default ManageBooking
+export default ManageBooking;
