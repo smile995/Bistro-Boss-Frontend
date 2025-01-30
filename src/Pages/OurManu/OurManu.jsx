@@ -10,11 +10,11 @@ import soup from "../../assets/menu/soup-bg.jpg";
 
 const OurManu = () => {
   const [manus] = useManu();
-  const pizzas = manus.filter((item) => item.category === "pizza");
-  const salads = manus.filter((item) => item.category === "salad");
-  const soups = manus.filter((item) => item.category === "soup");
-  const desserts = manus.filter((item) => item.category === "dessert");
-  const offereds = manus.filter((item) => item.category === "offered");
+  const pizzas = manus?.filter((item) => item.category === "pizza");
+  const salads = manus?.filter((item) => item.category === "salad");
+  const soups = manus?.filter((item) => item.category === "soup");
+  const desserts = manus?.filter((item) => item.category === "dessert");
+  const offereds = manus?.filter((item) => item.category === "offered");
   return (
     <div>
       <ItemCover

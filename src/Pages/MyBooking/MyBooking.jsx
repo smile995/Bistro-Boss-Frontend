@@ -3,6 +3,7 @@ import useAxiosSecure from "../../Hooks/useAxiosSecure";
 import useBistro from "../../Hooks/useBistro";
 import { FaTrash } from "react-icons/fa6";
 import SectionTitle from "../../SharedComponents/SectionTitle/SectionTitle";
+import Swal from "sweetalert2";
 
 const MyBooking = () => {
   const axiosSecure = useAxiosSecure();
@@ -16,7 +17,27 @@ const MyBooking = () => {
   });
 
   const deleteBooking = (id) => {
-    console.log(id);
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!",
+    }).then(async (result) => {
+      if (result.isConfirmed) {
+        const res = await axiosSecure.delete(`/tables/${id}`);
+        if (res?.data?.deletedCount > 0) {
+          refetch();
+          Swal.fire({
+            title: "Deleted!",
+            text: "Your booking has been deleted",
+            icon: "success",
+          });
+        }
+      }
+    });
   };
   return (
     <div>
@@ -28,7 +49,7 @@ const MyBooking = () => {
       </div>
       <div className="md:w-5/6 mx-auto bg-white rounded p-2 md:p-10">
         <div className="flex justify-between items-center">
-          <h3 className="md:text-2xl font-bold">Your All Booking </h3>
+          <h3 className="md:text-2xl font-bold">Booking Details</h3>
           <h3 className="md:text-2xl font-bold">
             Total Booked: {data?.length}{" "}
           </h3>
@@ -64,7 +85,7 @@ const MyBooking = () => {
                     <button
                       disabled={book?.status === "confirm"}
                       onClick={() => deleteBooking(book?._id)}
-                      className="rounded p-2 bg-[#ba1c1c] text-white text-xl"
+                      className=" btn btn-warning  text-white text-xl"
                     >
                       <FaTrash />
                     </button>
